@@ -30,4 +30,8 @@ describe('cwd:', function() {
   it('should return the absolute path relative to the cwd', function() {
     assert.equal(normalize(cwd('fixtures', 'a', 'b', 'c')), absolute('fixtures/a/b/c'));
   });
+
+  it('should accept array as the arguments', function() {
+    assert.equal(normalize(cwd(['fixtures', 'a', 'b', 'c'])), absolute('fixtures/a/b/c'));
+  });
 });

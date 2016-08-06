@@ -25,10 +25,12 @@ var cache = {};
  */
 
 module.exports = function(filename) {
-  var filepath = path.resolve(filename || '');
-
-  if (arguments.length > 1) {
-    filepath = path.resolve.apply(path, arguments);
+  var filepath;
+  if (arguments.length > 1 || Array.isArray(filename)) {
+    var args = [].concat.apply([], Array.from(arguments));
+    filepath = path.resolve.apply(path, args);
+  } else {
+    filepath = path.resolve(filename || '');
   }
 
   if (cache.hasOwnProperty(filepath)) {
